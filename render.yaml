@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: places-agent-demo
+    env: node
+    plan: free
+    buildCommand: ""
+    startCommand: node server.js
+    envVars:
+      - key: PLACES_AGENT_API_KEY
+        sync: false

@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: Places Agent Booking Demo API
+  version: 1.0.0
+  description: API for searching rooms and booking rooms from a Copilot/agent demo.
+servers:
+  - url: https://YOUR-DEPLOYED-DEMO-URL
+    description: Replace with your deployed app URL
+  - url: http://localhost:3000
+    description: Local development only
+security:
+  - bearerAuth: []
+paths:
+  /api/health:
+    get:
+      operationId: healthCheck
+      summary: Check whether the booking API is online
+      security: []
+      responses:
+        "200":
+          description: API is online
+  /api/rooms:
+    get:
+      operationId: findAvailableRooms
+      summary: Find available rooms
+      parameters:
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "2026-06-22"
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "11:30"
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "12:30"
+        - name: seats
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 4
+      responses:
+        "200":
+          description: List of available rooms
+  /api/bookings:
+    get:
+      operationId: listBookings
+      summary: List current reservations
+      responses:
+        "200":
+          description: Current reservations
+    post:
+      operationId: bookSpecificRoom
+      summary: Book a room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roomId:
+                  type: string
+                  example: "2.10"
+                date:
+                  type: string
+                  example: "2026-06-22"
+                from:
+                  type: string
+                  example: "11:30"
+                to:
+                  type: string
+                  example: "12:30"
+                seats:
+                  type: integer
+                  example: 4
+                title:
+                  type: string
+                  example: "Client prep"
+                requestedBy:
+                  type: string
+                  example: "copilot.agent"
+      responses:
+        "201":
+          description: Room booked
+        "409":
+          description: Room not available
+  /api/agent-command:
+    post:
+      operationId: bookRoomFromInstruction
+      summary: Book a room from a natural language instruction
+      description: Use this when the user gives a natural language room-booking request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - command
+              properties:
+                command:
+                  type: string
+                  example: "Book room 2.10 for 4 people on 2026-06-22 from 11:30 to 12:30"
+      responses:
+        "201":
+          description: Room booked from instruction
+        "409":
+          description: No available room
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

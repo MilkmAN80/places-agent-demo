@@ -1,0 +1,13 @@
+{
+  "name": "places-agent-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Functional Places room-booking demo with agent-callable APIs.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
