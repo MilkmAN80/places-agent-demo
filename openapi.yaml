@@ -4,8 +4,8 @@ info:
   version: 1.0.0
   description: API for searching rooms and booking rooms from a Copilot/agent demo.
 servers:
-  - url: https://YOUR-DEPLOYED-DEMO-URL
-    description: Replace with your deployed app URL
+  - url: https://places-agent-demo.onrender.com
+  description: Replace with your deployed app URL
   - url: http://localhost:3000
     description: Local development only
 security:
@@ -101,7 +101,7 @@ paths:
       description: Use this when the user gives a natural language room-booking request.
       requestBody:
         required: true
-        content:
+        content:Y
           application/json:
             schema:
               type: object
