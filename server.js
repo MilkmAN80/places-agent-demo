@@ -5,8 +5,12 @@ const crypto = require("crypto");
 
 const PORT = Number(process.env.PORT || 3000);
 const API_KEY = process.env.PLACES_AGENT_API_KEY || "demo-agent-key";
-const PUBLIC_DIR = path.join(__dirname, "public");
-const DB_PATH = path.join(__dirname, "data", "db.json");
+const PUBLIC_DIR = fs.existsSync(path.join(__dirname, "public"))
+  ? path.join(__dirname, "public")
+  : __dirname;
+const DB_PATH = fs.existsSync(path.join(__dirname, "data", "db.json"))
+  ? path.join(__dirname, "data", "db.json")
+  : path.join(__dirname, "db.json");
 
 const rooms = [
   { id: "2.1", name: "2.1", building: "02, Copenhagen, Harald hus, Copenhagen", floor: "2", seats: 4, amenities: ["HDMI Cable", "In-room Audio", "Widescreen Monitor"], favorite: true },
