@@ -1,0 +1,60 @@
+{
+  "bookings": [
+    {
+      "id": "b096a52e-f84e-4ffc-9294-e94536c377ee",
+      "roomId": "2.3",
+      "roomName": "2.3",
+      "building": "02, Copenhagen, Harald hus, Copenhagen",
+      "title": "Agent room booking",
+      "date": "2026-06-22",
+      "from": "11:30",
+      "to": "12:30",
+      "requestedBy": "demo.user",
+      "status": "Confirmed",
+      "timezone": "Europe/Copenhagen",
+      "createdAt": "2026-06-22T06:35:45.073Z"
+    },
+    {
+      "id": "67c44381-a8d1-4b66-9603-7a4f1c0809b8",
+      "roomId": "2.1",
+      "roomName": "2.1",
+      "building": "02, Copenhagen, Harald hus, Copenhagen",
+      "title": "Agent room booking",
+      "date": "2026-06-22",
+      "from": "11:30",
+      "to": "12:30",
+      "requestedBy": "demo.user",
+      "status": "Confirmed",
+      "timezone": "Europe/Copenhagen",
+      "createdAt": "2026-06-22T06:35:27.911Z"
+    },
+    {
+      "id": "seed-1",
+      "roomId": "4.9",
+      "roomName": "4.9",
+      "building": "04, Copenhagen, Harald hus, Copenhagen",
+      "title": "Client prep",
+      "date": "2026-06-22",
+      "from": "08:00",
+      "to": "17:00",
+      "requestedBy": "k.f.palaniappan",
+      "status": "Confirmed",
+      "timezone": "Europe/Copenhagen",
+      "createdAt": "2026-06-22T08:00:00.000Z"
+    },
+    {
+      "id": "seed-2",
+      "roomId": "the-new",
+      "roomName": "The New",
+      "building": "03, Stockholm, Radmanagatan 42, Stockholm",
+      "title": "Client Prep",
+      "date": "2026-06-22",
+      "from": "10:00",
+      "to": "12:00",
+      "requestedBy": "jonas.lagerstedt",
+      "status": "Awaiting approval",
+      "timezone": "Europe/Stockholm",
+      "createdAt": "2026-06-22T08:30:00.000Z"
+    }
+  ]
+}

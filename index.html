@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Places Agent Booking Demo</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" data-screen="home"><span>accenture</span></button>
+    <div class="product">Places</div>
+    <nav class="toplinks" aria-label="Top navigation">
+      <button data-screen="reservations">View Reservations</button>
+      <button>Help</button>
+      <div class="avatar">●</div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Workplace</h1>
+      <p>We support your space requests, reservations, and resource needs that turn workspaces into places that work.</p>
+      <div class="hero-actions">
+        <button class="outline-button" data-screen="search">Reserve a Space</button>
+        <button class="text-button" data-screen="reservations">View Reservations</button>
+      </div>
+    </div>
+    <div class="hero-photos" aria-hidden="true">
+      <div class="photo one"></div>
+      <div class="photo two"></div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section id="home" class="screen active">
+      <div class="landing">
+        <div class="building">
+          <div>
+            <div class="building-image">
+              <button class="carousel-arrow left">‹</button>
+              <button class="carousel-arrow right">›</button>
+            </div>
+            <div class="dots"><span class="dot active"></span><span class="dot"></span></div>
+          </div>
+          <div>
+            <h2>Bengaluru, BDC14A</h2>
+            <p>Hosur Road, Adugodi Post, Tower<br>Bengaluru, Karnataka<br>India</p>
+            <p>📍 <button class="purple-link">Get Directions ↗</button></p>
+            <p>♿ <button class="purple-link">Go to Accessibility Report ↗</button></p>
+          </div>
+          <div class="features">
+            <h3>Features</h3>
+            <div class="chips">
+              <span>✚ Health Care Facility</span>
+              <span>⌕ Sport Area</span>
+              <span>☕ Café/Deli</span>
+              <span>⚚ All Inclusive Washroom</span>
+              <span>▰ Napping Room</span>
+              <span>♻ Single Use Plastic Free</span>
+              <span>Ⓟ Car parking</span>
+              <span>♿ Automatic Building Entrance</span>
+            </div>
+            <button class="purple-link feature-link">View All Features</button>
+          </div>
+        </div>
+
+        <aside>
+          <div class="reserve-card">
+            <h2>Reserve space⌄</h2>
+            <input value="Bengaluru, BDC14A" aria-label="Building">
+            <input id="home-date" type="date" value="2026-06-22" aria-label="Date">
+            <select id="home-slot" aria-label="Time slot">
+              <option value="">Select a time slot</option>
+              <option value="08:00-17:00">08:00 - 17:00</option>
+              <option value="10:00-12:00">10:00 - 12:00</option>
+              <option value="11:30-12:30">11:30 - 12:30</option>
+            </select>
+            <div class="timezone">IST timezone</div>
+            <div class="empty-art"></div>
+            <div class="empty-state">
+              <h3>Let's find a space for you</h3>
+              <p>Please select mandatory fields to search</p>
+            </div>
+            <button class="purple-link advanced" data-screen="search">Advanced Reservations</button>
+          </div>
+
+          <div class="api-card">
+            <h2>Agent connection</h2>
+            <label for="api-key">Demo API key</label>
+            <input id="api-key" type="password" placeholder="demo-agent-key">
+            <p class="hint">Use the same key in your agent as a bearer token. Default local key is <strong>demo-agent-key</strong>.</p>
+            <div class="button-row">
+              <button class="primary" id="save-key">Save key</button>
+              <button class="ghost" id="copy-endpoints">Copy endpoints</button>
+            </div>
+            <p class="hint" id="key-status">No key saved yet.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="search" class="screen">
+      <div class="search-layout">
+        <aside class="filters">
+          <div class="filter-section">
+            <h3>▦ What</h3>
+            <label>* Type</label>
+            <select><option>Meeting Room</option><option>Desk</option></select>
+          </div>
+          <div class="filter-section">
+            <h3>📍 Where</h3>
+            <p><span class="radio active"></span> Browse all</p>
+            <p><span class="radio"></span> Browse by neighborhood</p>
+            <label>* Building</label>
+            <input id="building-filter" value="Copenhagen">
+            <label>Floor</label>
+            <select id="floor-filter"><option value="">All floors</option><option>2</option><option>4</option></select>
+            <button class="purple-link inline">Add another building⌄</button>
+          </div>
+          <div class="filter-section">
+            <h3>▣ When</h3>
+            <label>* From ⓘ</label>
+            <input id="date-filter" type="date" value="2026-06-22">
+            <select id="from-filter"><option>11:30</option><option>08:00</option><option>10:00</option></select>
+            <label>* To ⓘ</label>
+            <input type="date" value="2026-06-22">
+            <select id="to-filter"><option>12:30</option><option>17:00</option><option>12:00</option></select>
+            <p class="tz-right">Europe/Copenhagen timezone</p>
+          </div>
+        </aside>
+        <section class="results">
+          <div class="results-head">
+            <div>
+              <h2>Search Results</h2>
+              <p id="result-count">Loading rooms...</p>
+            </div>
+            <div class="toolbar">
+              <select id="sort"><option>My favorites first</option><option>Capacity: low to high</option></select>
+              <div class="view-switch"><button class="active">Card</button><button>Schedule</button><button>Map</button></div>
+            </div>
+          </div>
+          <div id="room-cards" class="cards"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="reservations" class="screen">
+      <div class="reservations">
+        <div class="agent-panel">
+          <div>
+            <h2>Give your agent an instruction</h2>
+            <p>Try: <strong>Book room 2.10 for 4 people on 2026-06-22 from 11:30 to 12:30</strong></p>
+          </div>
+          <textarea id="agent-command">Book a room for 4 people on 2026-06-22 from 11:30 to 12:30 for client prep</textarea>
+          <div class="button-row">
+            <button class="primary" id="send-agent-command">Run instruction</button>
+            <button class="ghost" id="refresh-bookings">Refresh reservations</button>
+          </div>
+          <p class="hint" id="agent-result">Commands call the same API your external agent can call.</p>
+        </div>
+
+        <div class="reservation-card">
+          <div class="reservation-date">2026-06-22<br><span>ⓘ Times shown based on building location</span></div>
+          <div id="booking-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
